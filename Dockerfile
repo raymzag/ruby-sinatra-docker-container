@@ -5,7 +5,6 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
-RUN bundle install
 EXPOSE 4567
 
 CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "4567"]
