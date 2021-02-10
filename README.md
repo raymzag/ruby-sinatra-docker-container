@@ -8,6 +8,8 @@ This repository provides the necessary Docker configuration to use Sinatra for R
 
 This is a template repository, which means you should create a new repository using `ruby-sinatra-docker-container` as a template. Once you've done so, clone the repository on your desktop and `cd` into the repository via the command line.
 
+This project also includes all the basic scaffolding for a Sinatra project, including `app.rb`, `lib` and `spec` directories, and other necessary configuration such as a `Gemfile` and `config.ru` file.
+
 ### Running a Server
 
 To run a local server, type the following into the command line (you must be in the root directory of the project):
@@ -15,6 +17,8 @@ To run a local server, type the following into the command line (you must be in 
 ```
 $ docker-compose up --build
 ```
+
+Once the server is running, you can navigate to `http://localhost:4567/` to see the home page of the Sinatra application. You can do this as soon as you clone the project. If everything is working correctly, you'll see `Hello world!` at `http://localhost:4567/`.
 
 ### Using Pry with Sinatra
 
@@ -51,6 +55,8 @@ To run tests, run the following command:
 ```
 $ test=test docker-compose run --rm web
 ```
+
+There are two specs included in the basic scaffolding - an RSpec test and a Capybara integration test. You can run the command above without making any code changes to see the test output.
 
 Pry will work with this command and there's no need to do any extra work such as attaching to an image.
 
