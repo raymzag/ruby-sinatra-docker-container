@@ -1,6 +1,6 @@
 ## Description
 
-This repository provides the necessary Docker configuration to use Sinatra for Ruby and Rails Week 2 and 3 at Epicodus. This includes the following:
+This repository provides the necessary Docker configuration to use Sinatra for Ruby and Rails Week 2 at Epicodus. This includes the following:
 
 * Running a Sinatra local server.
 * Attaching to the local server to use Pry for debugging.
@@ -8,7 +8,7 @@ This repository provides the necessary Docker configuration to use Sinatra for R
 
 This is a template repository, which means you should create a new repository using `ruby-sinatra-docker-container` as a template. Once you've done so, clone the repository on your desktop and `cd` into the repository via the command line.
 
-This project also includes all the basic scaffolding for a Sinatra project, including `app.rb`, `lib` and `spec` directories, and other necessary configuration such as a `Gemfile` and `config.ru` file.
+This project also includes most of the basic scaffolding for a Sinatra project, including `app.rb`, `lib` and `spec` directories, and other necessary configuration such as a `Gemfile` and `config.ru` file. While you can run the included tests and `app.rb`, they are just for demonstration and you'll want to replace these files with your own.
 
 ### Running a Server
 
@@ -19,6 +19,28 @@ $ docker-compose up --build
 ```
 
 Once the server is running, you can navigate to `http://localhost:4567/` to see the home page of the Sinatra application. You can do this as soon as you clone the project. If everything is working correctly, you'll see `Hello world!` at `http://localhost:4567/`.
+
+When you're done running the server, you should always type in `docker-compose down` to gracefully stop the container.
+
+### Running Tests
+
+To run tests, run the following command:
+
+```
+$ docker-compose run --rm web bundle exec rspec
+```
+
+There are two specs included in the basic scaffolding - an RSpec test and a Capybara integration test. You can run the command above without making any code changes to see the test output.
+
+Pry will work with this command and there's no need to do any extra work such as attaching to an image. Just add `binding.pry` to your code where needed (and don't forget to `require 'pry'` if it's needed in a file).
+
+You may want to alias the above command. For example:
+
+```bash
+# Add this to your shell configuration.
+
+alias sspec="docker-compose run --rm web bundle exec rspec"
+```
 
 ### Using Pry with Sinatra
 
@@ -47,23 +69,3 @@ $ docker attach [CONTAINER_ID]
 ```
 
 For instance, with the processes listed in the example above, we'd type, `$ docker attach ed9caa7f61ab`.
-
-### Running Tests
-
-To run tests, run the following command:
-
-```
-$ test=test docker-compose run --rm web
-```
-
-There are two specs included in the basic scaffolding - an RSpec test and a Capybara integration test. You can run the command above without making any code changes to see the test output.
-
-Pry will work with this command and there's no need to do any extra work such as attaching to an image.
-
-You may want to alias the above command. For example:
-
-```bash
-# Add this to your shell configuration.
-
-alias sspec="test=test docker-compose run --rm web"
-```
