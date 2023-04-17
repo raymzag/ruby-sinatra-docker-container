@@ -25,6 +25,9 @@ services:
     container_name: app
     environment:
       RABBITMQ_URL: amqp://username:password@rabbitmq:5672
+      POSTHOG_API_KEY: phc_
+      POSTHOG_PERSONAL_KEY: phx_
+      POSTHOG_HOST: https://eu.posthog.com
     ports:
       - "4567:4567"
     stdin_open: true

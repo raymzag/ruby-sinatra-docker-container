@@ -4,7 +4,7 @@ class MyWorker
 
   def work(data)
     puts "executing at #{Time.now}"
-    puts data
+    puts $posthog.get_feature_flag('test-feature', 1)
     ack!
   end
 end
