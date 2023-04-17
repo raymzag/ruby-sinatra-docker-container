@@ -1,9 +1,30 @@
 version: '3.9'
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "username"
+      RABBITMQ_DEFAULT_PASS: "password"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+      - 5671-5672:5671-5672
+    restart: always
+    labels:
+      name:
+        rabbitmq
+
   web:
     volumes:
       - .:/myapp
     build: .
+    depends_on:
+      - rabbitmq
+    container_name: app
+    environment:
+      RABBITMQ_URL: amqp://username:password@rabbitmq:5672
     ports:
       - "4567:4567"
     stdin_open: true

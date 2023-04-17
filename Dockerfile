@@ -7,7 +7,6 @@ RUN gem install bundler:2.3.8
 RUN bundle install
 #RUN bundle update
 COPY . /myapp
-COPY Procfile /myapp/Procfile
 
 EXPOSE 4567
 
